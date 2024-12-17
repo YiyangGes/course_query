@@ -37,7 +37,7 @@ def save_to_sqlite(df, database_name='courses.db', table_name='courses'):
 
 if __name__ == "__main__":
     # Load and process XLSX file
-    file_path = "Final_project\FTCM_Course_List_Spring2025.xlsx"
+    file_path = "FTCM_Course_List_Spring2025.xlsx"
     result = process_xlsx(file_path)
 
     if result:
@@ -49,7 +49,7 @@ if __name__ == "__main__":
                               'Instructor ', 'Major/ GE/ \nElective', 'Format', 
                               'Mon', 'MonTo', 'Tue', 'TueTo', 'Wed', 'WedTo', 
                               'Thu', 'ThuTo', 'Fri', 'FriTo', 'Sat', 'SatTo', 
-                              'Platform', 'New/ Repeat', 'Room']
+                              'Platform', 'New/ Repeat', 'Room',"Department", "Program"]
         cleaned_column_names = [x.strip() for x in cleaned_column_names]
         
         # Create DataFrame

@@ -76,11 +76,12 @@ def diagnose_inconsistencies(df):
     return df
 
 if __name__ == "__main__":
-    file_path = "Final_project\FTCM_Course_List_Spring2025.xlsx"
+    file_path = "FTCM_Course_List_Spring2025.xlsx"
     result = process_xlsx(file_path)
         
     if result:
         column_names, department_program_courses = result
+        print(department_program_courses)
 
         column_names = [x.strip() if x else x for x in column_names]
         print(f"Column Names:{column_names}") 

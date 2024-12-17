@@ -92,7 +92,7 @@ def process_xlsx(file_path):
         return None
 
 if __name__ == "__main__":
-    file_path = "Final_project\FTCM_Course_List_Spring2025.xlsx"
+    file_path = "FTCM_Course_List_Spring2025.xlsx"
     result = process_xlsx(file_path)
     
     if result:
