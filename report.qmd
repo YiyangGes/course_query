@@ -6,7 +6,7 @@ format: html
 ### Problems and Solutions
 ####  1. Unable to generate correct SQL Due to Lack of information
 For example
-s
+
 ```python
 question = "Which courses are available in the Biomedical sciemce department for Spring 2025?"
 sql = sql_generator.invoke({"question": question})
@@ -22,7 +22,7 @@ But the actual Department value is **Biomedical Science (BMS)**
 
 Put needed information in to system prompt
 
-```python column_unique_values_str```is storing Needed Instructor, Department, Programs information
+```column_unique_values_str```is storing Needed Instructor, Department, Programs information
 ```python
 {"Instructor": ["Michael Zhao", "Kevin Ren", "Qihu ...... or of Fine Arts)", "Dance (Master of Fine Arts)"]}
 ```
