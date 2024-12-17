@@ -18,4 +18,22 @@ SELECT * FROM courses WHERE "Department" = 'Biomedical Science';
 ```
 But the actual Department value is **Biomedical Science (BMS)**
 
+#### Solution
+
+Put needed information in to system prompt
+
+```python column_unique_values_str```is storing Needed Instructor, Department, Programs information
+```python
+{"Instructor": ["Michael Zhao", "Kevin Ren", "Qihu ...... or of Fine Arts)", "Dance (Master of Fine Arts)"]}
+```
+
+```python
+system_prompt = """Your are an helpful assistence that helps answer questions about course on Spring Semeter of 2025. \
+                All needed information is stored in course.db
+                Here is a dictionary storing something values of the database. 
+                The key of dictionary is Column name, and the value is a list of values of the database under the corresponding Column name
+                
+                Dictionary : \n
+                """+column_unique_values_str[1:-2]
+```
 
