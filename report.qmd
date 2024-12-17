@@ -1,0 +1,21 @@
+---
+title: "Building an LLM-Powered Course Query System"
+format: html
+---
+
+### Problems and Solutions
+####  1. Unable to generate correct SQL Due to Lack of information
+For example
+s
+```python
+question = "Which courses are available in the Biomedical sciemce department for Spring 2025?"
+sql = sql_generator.invoke({"question": question})
+print(str(sql))
+```
+This code will retrun 
+```sql
+SELECT * FROM courses WHERE "Department" = 'Biomedical Science';
+```
+But the actual Department value is **Biomedical Science (BMS)**
+
+
