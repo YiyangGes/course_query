@@ -74,6 +74,7 @@ Question: {question}
 SQL Query:"""
 
 system_prompt = """Your are an helpful assistence that helps answer questions about course on Spring Semeter of 2025. \
+                If the question is unrelated to courses, please respond with "Sorry, I can only answer questions related to courses for the Spring Semester of 2025."
                 All needed information is stored in course.db
                 Here is a dictionary storing something values of the database. 
                 The key of dictionary is Column name, and the value is a list of values of the database under the corresponding Column name
@@ -129,7 +130,7 @@ complete_chain = (
 )
 
 # question = "How many courses does Mr. Micheal Zhao teaches"
-# question = " What are avaliale Departments?"
+# question = "What are avaliale Departments?"
 question = "Which courses are available in the Biomedical sciemce department for Spring 2025?"
 nl_response = complete_chain.invoke({"question": question})
 print(nl_response)
