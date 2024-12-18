@@ -116,7 +116,7 @@ class SafeQueryExecutor:
         self.query_validator = QueryValidator(db_connection)
         self.db = db_connection
         self.chain = llm_chain
-        # self.sqlgen = query_chain
+        self.sqlgen = query_chain
 
     def execute_safe_query(self, question: str) -> Dict:
         """
@@ -140,7 +140,8 @@ class SafeQueryExecutor:
         try:
             # Generate SQL query
             sql_query = self.sqlgen.invoke({"question": question})
-            
+            print("sql from class:")
+            print(sql_query)
             # Validate generated SQL
             if not self.query_validator.validate_sql(sql_query):
                 return {

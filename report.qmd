@@ -36,4 +36,3 @@ system_prompt = """Your are an helpful assistence that helps answer questions ab
                 Dictionary : \n
                 """+column_unique_values_str[1:-2]
 ```
-

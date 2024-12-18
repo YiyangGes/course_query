@@ -9,6 +9,8 @@ from langchain_community.utilities import SQLDatabase
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
+from validate_safty import SafeQueryExecutor
+
 
 conn = sqlite3.connect("courses.db")
 
@@ -129,8 +131,31 @@ complete_chain = (
     | llm
 )
 
-# question = "How many courses does Mr. Micheal Zhao teaches"
+question = "How many courses does Mr. Micheal Zhao teaches"
 # question = "What are avaliale Departments?"
-question = "Which courses are available in the Biomedical sciemce department for Spring 2025?"
-nl_response = complete_chain.invoke({"question": question})
-print(nl_response)
+# question = "Which courses are available in the Biomedical sciemce department for Spring 2025?"
+# # nl_response = complete_chain.invoke({"question": question})
+# print(nl_response)
+
+safe_executor = SafeQueryExecutor(db, sql_generator, complete_chain)
+
+# Example queries
+def test_queries():
+    # Valid query
+    # result1 = safe_executor.execute_safe_query("What is salary of Klay Thompson?")
+    result1 = safe_executor.execute_safe_query(question)
+    print("\nValid Query Result:")
+    print(result1)
+    
+    # Invalid query with SQL injection attempt
+    result2 = safe_executor.execute_safe_query("SELECT * FROM courses; DROP TABLE courses;")
+    print("\nInvalid Query Result:")
+    print(result2)
+    
+    # Query with restricted words
+    result3 = safe_executor.execute_safe_query("delete all players from Warriors")
+    print("\nRestricted Query Result:")
+    print(result3)
+
+# Run test queries
+test_queries()
