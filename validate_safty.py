@@ -87,7 +87,8 @@ class QueryValidator:
             return False
         
         # Check for multiple statements
-        if ';' in sql[:-1]:  # Allow semicolon at the end
+        # print("------"+sql.strip()[:-1]+"-------")
+        if ';' in sql.strip()[:-1]:  # Allow semicolon at the end
             self.error_messages.append("Multiple SQL statements are not allowed")
             return False
         
@@ -140,15 +141,15 @@ class SafeQueryExecutor:
         try:
             # Generate SQL query
             sql_query = self.sqlgen.invoke({"question": question})
-            print("sql from class:")
-            print(sql_query)
+            # print("sql from class:")
+            # print(sql_query)
             # Validate generated SQL
             if not self.query_validator.validate_sql(sql_query):
                 return {
                     'success': False,
                     'error': self.query_validator.get_error_messages(),
                     'query': sql_query,
-                    'result': None
+                    'result': self.query_validator.get_error_messages()
                 }
             
             # Execute query
